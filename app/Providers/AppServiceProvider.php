@@ -30,5 +30,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             'Illuminate\Contracts\Auth\Registrar', 'App\Services\Registrar'
         );
+
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
     }
 }

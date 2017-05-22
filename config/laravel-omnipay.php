@@ -19,6 +19,10 @@ return [
             'driver'  => 'Stripe',
             'options' => [],
         ],
+        'mollie' => [
+            'driver'  => 'Mollie',
+            'options' => [],
+        ],
     ],
 
 ];

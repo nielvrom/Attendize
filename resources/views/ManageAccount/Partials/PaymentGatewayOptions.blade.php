@@ -151,6 +151,26 @@
 
 </section>
 
+{{--Mollie--}}
+<section class="payment_gateway_options"  id="gateway_{{config('attendize.payment_gateway_mollie')}}">
+    <h4>Mollie Settings</h4>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                {!! Form::label('mollie[TestApiKey]', 'Test API Key', array('class'=>'control-label ')) !!}
+                {!! Form::text('mollie[TestApiKey]', $account->getGatewayConfigVal(config('attendize.payment_gateway_mollie'), 'TestApiKey'),[ 'class'=>'form-control'])  !!}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {!! Form::label('mollie[LiveApiKey]', 'Live API Key', ['class'=>'control-label ']) !!}
+                {!! Form::text('mollie[LiveApiKey]', $account->getGatewayConfigVal(config('attendize.payment_gateway_mollie'), 'LiveApiKey'),[ 'class'=>'form-control'])  !!}
+            </div>
+        </div>
+    </div>
+</section>
+
 
 
 

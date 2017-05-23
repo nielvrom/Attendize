@@ -138,6 +138,9 @@ class ManageAccountController extends MyBaseController
                 break;
 			case config('attendize.payment_gateway_migs') : //MIGS
 				$config = $request->get('migs');
+                break;
+            case config('attendize.payment_gateway_mollie') : //Mollie
+                $config = $request->get('mollie');
 				break;
         }
 

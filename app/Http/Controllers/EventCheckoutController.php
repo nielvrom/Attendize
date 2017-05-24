@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\OrderCompletedEvent;
+use App\Models\Account;
 use App\Models\AccountPaymentGateway;
 use App\Models\Affiliate;
 use App\Models\Attendee;
@@ -382,12 +383,12 @@ class EventCheckoutController extends Controller
                         ];
 
                         if (App::environment('local', 'staging')) {
-                            //$apiKey = AccountPaymentGateway::get
+                            $apiKey = AccountPaymentGateway::where('payment_gateway_id', 5)->get()->pluck('config', 'id')->first()['TestApiKey'];
                         }
-                        else if(App::environment('local', 'staging')) {
+                        else if(App::environment('production')) {
+                            $apiKey = AccountPaymentGateway::where('payment_gateway_id', 5)->get()->pluck('config', 'id')->first()['LiveApiKey'];
+                        }
 
-                        }
-                        $apiKey = "test_gSDS4xNA96AfNmmdwB3fAA47zS84KN";
                         $gateway->setApiKey($apiKey);
                         break;
                     default:

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\OrderCompletedEvent;
+use App\Models\AccountPaymentGateway;
 use App\Models\Affiliate;
 use App\Models\Attendee;
 use App\Models\Event;
@@ -16,6 +17,7 @@ use Carbon\Carbon;
 use Cookie;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Log;
 use Omnipay;
 use PDF;
@@ -370,6 +372,24 @@ class EventCheckoutController extends Controller
                         $transaction_data['description'] = "Ticket sales " . $transaction_data['transactionId'];
 
                         break;
+                    case config('attendize.payment_gateway_mollie'):
+                        $transaction_data += [
+                            'transactionId' => $event_id . date('YmdHis'),       // TODO: Where to generate transaction id?
+                            'returnUrl' => route('showEventCheckoutPaymentReturn', [
+                                'event_id'              => $event_id,
+                                'is_payment_successful' => 1
+                            ]),
+                        ];
+
+                        if (App::environment('local', 'staging')) {
+                            //$apiKey = AccountPaymentGateway::get
+                        }
+                        else if(App::environment('local', 'staging')) {
+
+                        }
+                        $apiKey = "test_gSDS4xNA96AfNmmdwB3fAA47zS84KN";
+                        $gateway->setApiKey($apiKey);
+                        break;
                     default:
                         Log::error('No payment gateway configured.');
                         return repsonse()->json([
@@ -378,7 +398,6 @@ class EventCheckoutController extends Controller
                         ]);
                         break;
                 }
-
 
                 $transaction = $gateway->purchase($transaction_data);
 
@@ -392,7 +411,6 @@ class EventCheckoutController extends Controller
                     return $this->completeOrder($event_id);
 
                 } elseif ($response->isRedirect()) {
-
                     /*
                      * As we're going off-site for payment we need to store some data in a session so it's available
                      * when we return
@@ -452,7 +470,6 @@ class EventCheckoutController extends Controller
      */
     public function showEventCheckoutPaymentReturn(Request $request, $event_id)
     {
-
         if ($request->get('is_payment_cancelled') == '1') {
             session()->flash('message', 'You cancelled your payment. You may try again.');
             return response()->redirectToRoute('showEventCheckout', [

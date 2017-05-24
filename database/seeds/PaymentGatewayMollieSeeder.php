@@ -17,8 +17,8 @@ class PaymentGatewayMollieSeeder extends Seeder
                 'name' => 'Mollie',
                 'provider_name' => 'Mollie',
                 'provider_url' => 'https://www.mollie.com',
-                'is_on_site' => 1,
-                'can_refund' => 1,
+                'is_on_site' => 0,
+                'can_refund' => 0,
             ],
         ];
 

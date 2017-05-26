@@ -2,10 +2,10 @@
 
 @section('message_content')
     <div>
-        Hello,<br><br>
-        To reset your password, complete this form: {{ route('showResetPassword', ['token' => $token]) }}.
+        {{ trans('emails.hello') }},<br><br>
+        {{ trans('emails.reset_password') }}: {{ route('showResetPassword', ['token' => $token]) }}.
         <br><br><br>
-        Thank you,<br>
-        Team Attendize
+        {{ trans('emails.thank_you') }},<br>
+        {{ trans('emails.team_tickety') }}
     </div>
 @stop

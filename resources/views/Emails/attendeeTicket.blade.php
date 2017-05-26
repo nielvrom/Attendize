@@ -1,10 +1,10 @@
-Hi {{{$attendee->first_name}}},<br><br>
+{{ trans('emails.hi') }} {{{$attendee->first_name}}},<br><br>
 
-We've attached your tickets to this email.<br><br>
+{{ trans('emails.attachment') }}<br><br>
 
-You can view your order info and download your tickets at {{route('showOrderDetails', ['order_reference' => $attendee->order->order_reference])}} anytime.<br><br>
+{{ trans('emails.view_order_info') }} {{route('showOrderDetails', ['order_reference' => $attendee->order->order_reference])}} {{ trans('emails.anytime') }}.<br><br>
 
-Your order reference is <b>{{$attendee->order->order_reference}}</b>.<br>
+{{ trans('emails.order_reference') }} <b>{{$attendee->order->order_reference}}</b>.<br>
 
-Thank you<br>
+{{ trans('emails.thank_you') }}<br>
 

@@ -62,30 +62,30 @@
                         </div>
 
                         <div class="event_details">
-                            <h4>Event</h4>
+                            <h4>{{trans('ticket.event')}}</h4>
                             {{$event->title}}
-                            <h4>Organiser</h4>
+                            <h4>{{trans('ticket.organiser')}}</h4>
                             {{$event->organiser->name}}
-                            <h4>Venue</h4>
+                            <h4>{{trans('ticket.venue')}}</h4>
                             {{$event->venue_name}}
-                            <h4>Start Date / Time</h4>
+                            <h4>{{trans('ticket.start')}}</h4>
                             {{$event->start_date->format('M dS g:iA')}}
-                            <h4>End Date / Time</h4>
+                            <h4>{{trans('ticket.end')}}</h4>
                             {{$event->end_date->format('M dS g:iA')}}
                         </div>
 
                         <div class="attendee_details">
-                            <h4>Name</h4>
+                            <h4>{{trans('ticket.name')}}</h4>
                             {{$attendee->first_name.' '.$attendee->last_name}}
 
-                            <h4>Ticket Type</h4>
+                            <h4>{{trans('ticket.tickettype')}}</h4>
                             {{$attendee->ticket->title}}
-                            <h4>Order Ref.</h4>
+                            <h4>{{trans('ticket.orderref')}}</h4>
                             {{$order->order_reference}}
-                            <h4>Attendee Ref.</h4>
+                            <h4>{{trans('ticket.attref')}}</h4>
                             {{$attendee->reference}}
-                            <h4>Price</h4>
-                            {{money($attendee->ticket->total_price, $order->event->currency)}} (inc. {{money($attendee->ticket->total_booking_fee, $order->event->currency)}} Fees)
+                            <h4>{{trans('ticket.price')}}</h4>
+                            {{money($attendee->ticket->total_price, $order->event->currency)}} (inc. {{money($attendee->ticket->total_booking_fee, $order->event->currency)}} {{trans('ticket.fees')}})
                         </div>
 
                         <div class="barcode">

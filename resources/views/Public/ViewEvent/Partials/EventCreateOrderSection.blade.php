@@ -1,7 +1,7 @@
 <section id='order_form' class="container">
     <div class="row">
         <h1 class="section_head">
-            Order Details
+            {{trans('event.createOrder.title')}}
         </h1>
     </div>
     <div class="row">
@@ -10,7 +10,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">
                         <i class="ico-cart mr5"></i>
-                        Order Summary
+                        {{trans('event.createOrder.summary')}}
                     </h3>
                 </div>
 
@@ -18,7 +18,7 @@
                     <table class="table mb0 table-condensed">
                         @foreach($tickets as $ticket)
                         <tr>
-                            <td class="pl0">{{{$ticket['ticket']['title']}}} X <b>{{$ticket['qty']}}</b></td>
+                            <td class="pl0">{{$ticket['ticket']['title']}} X <b>{{$ticket['qty']}}</b></td>
                             <td style="text-align: right;">
                                 @if((int)ceil($ticket['full_price']) === 0)
                                 FREE
@@ -33,14 +33,14 @@
                 @if($order_total > 0)
                 <div class="panel-footer">
                     <h5>
-                        Total: <span style="float: right;"><b>{{ money($order_total + $total_booking_fee,$event->currency) }}</b></span>
+                        {{trans('event.createOrder.total')}}: <span style="float: right;"><b>{{ money($order_total + $total_booking_fee,$event->currency) }}</b></span>
                     </h5>
                 </div>
                 @endif
 
             </div>
             <div class="help-block">
-                Please note you only have <span id='countdown'></span> to complete this transaction before your tickets are re-released.
+                {!! trans('event.createOrder.countdown')!!}
             </div>
         </div>
         <div class="col-md-8 col-md-pull-4">
@@ -49,18 +49,18 @@
 
                 {!! Form::hidden('event_id', $event->id) !!}
 
-                <h3>Your Information</h3>
+                <h3>{{trans('event.createOrder.yourinfo')}}</h3>
 
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="form-group">
-                            {!! Form::label("order_first_name", 'First Name') !!}
+                            {!! Form::label("order_first_name", trans('forms.firstname')) !!}
                             {!! Form::text("order_first_name", null, ['required' => 'required', 'class' => 'form-control']) !!}
                         </div>
                     </div>
                     <div class="col-xs-6">
                         <div class="form-group">
-                            {!! Form::label("order_last_name", 'Last Name') !!}
+                            {!! Form::label("order_last_name",  trans('forms.lastname')) !!}
                             {!! Form::text("order_last_name", null, ['required' => 'required', 'class' => 'form-control']) !!}
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            {!! Form::label("order_email", 'Email') !!}
+                            {!! Form::label("order_email",  trans('forms.email')) !!}
                             {!! Form::text("order_email", null, ['required' => 'required', 'class' => 'form-control']) !!}
                         </div>
                     </div>
@@ -77,14 +77,14 @@
 
                 <div class="p20 pl0">
                     <a href="javascript:void(0);" class="btn btn-primary btn-xs" id="mirror_buyer_info">
-                        Copy buyer details to all ticket holders
+                        {{trans('event.createOrder.copydetails')}}
                     </a>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
                         <div class="ticket_holders_details" >
-                            <h3>Ticket Holder Information</h3>
+                            <h3>{{trans('event.createOrder.holders_title')}}</h3>
                             <?php
                                 $total_attendee_increment = 0;
                             ?>
@@ -94,20 +94,20 @@
 
                                     <div class="panel-heading">
                                         <h3 class="panel-title">
-                                            <b>{{$ticket['ticket']['title']}}</b>: Ticket Holder {{$i+1}} Details
+                                            <b>{{$ticket['ticket']['title']}}</b>: {{trans('event.createOrder.ticketholder',['number'=> $i+1])}}
                                         </h3>
                                     </div>
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    {!! Form::label("ticket_holder_first_name[{$i}][{$ticket['ticket']['id']}]", 'First Name') !!}
+                                                    {!! Form::label("ticket_holder_first_name[{$i}][{$ticket['ticket']['id']}]", trans('forms.firstname')) !!}
                                                     {!! Form::text("ticket_holder_first_name[{$i}][{$ticket['ticket']['id']}]", null, ['required' => 'required', 'class' => "ticket_holder_first_name.$i.{$ticket['ticket']['id']} ticket_holder_first_name form-control"]) !!}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    {!! Form::label("ticket_holder_last_name[{$i}][{$ticket['ticket']['id']}]", 'Last Name') !!}
+                                                    {!! Form::label("ticket_holder_last_name[{$i}][{$ticket['ticket']['id']}]",  trans('forms.lastname')) !!}
                                                     {!! Form::text("ticket_holder_last_name[{$i}][{$ticket['ticket']['id']}]", null, ['required' => 'required', 'class' => "ticket_holder_last_name.$i.{$ticket['ticket']['id']} ticket_holder_last_name form-control"]) !!}
                                                 </div>
                                             </div>
@@ -115,7 +115,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    {!! Form::label("ticket_holder_email[{$i}][{$ticket['ticket']['id']}]", 'Email Address') !!}
+                                                    {!! Form::label("ticket_holder_email[{$i}][{$ticket['ticket']['id']}]",  trans('forms.email')) !!}
                                                     {!! Form::text("ticket_holder_email[{$i}][{$ticket['ticket']['id']}]", null, ['required' => 'required', 'class' => "ticket_holder_email.$i.{$ticket['ticket']['id']} ticket_holder_email form-control"]) !!}
                                                 </div>
                                             </div>
@@ -141,17 +141,17 @@
 
                 @if($order_requires_payment)
 
-                <h3>Payment Information</h3>
+                <h3>{{trans('event.createOrder.payment_title')}}</h3>
 
                 @if($event->enable_offline_payments)
                     <div class="offline_payment_toggle">
                         <div class="custom-checkbox">
                             <input data-toggle="toggle" id="pay_offline" name="pay_offline" type="checkbox" value="1">
-                            <label for="pay_offline">Pay using offline method</label>
+                            <label for="pay_offline">{{trans('event.createOrder.offline')}}</label>
                         </div>
                     </div>
                     <div class="offline_payment" style="display: none;">
-                        <h5>Offline Payment Instructions</h5>
+                        <h5>{{trans('event.createOrder.instructions')}}</h5>
                         <div class="well">
                             {!! Markdown::parse($event->offline_payment_instructions) !!}
                         </div>
@@ -210,7 +210,7 @@
                 @endif
 
                {!! Form::hidden('is_embedded', $is_embedded) !!}
-               {!! Form::submit('Checkout', ['class' => 'btn btn-lg btn-success card-submit', 'style' => 'width:100%;']) !!}
+               {!! Form::submit(trans('event.createOrder.checkout'), ['class' => 'btn btn-lg btn-success card-submit', 'style' => 'width:100%;']) !!}
 
             </div>
         </div>

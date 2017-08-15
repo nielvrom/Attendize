@@ -1,4 +1,4 @@
-{{ trans('emails.hi') }} {{{$attendee->first_name}}},<br><br>
+{{ trans('emails.hi') }} {{$attendee->first_name}},<br><br>
 
 {{ trans('emails.attachment') }}<br><br>
 

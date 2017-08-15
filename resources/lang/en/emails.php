@@ -13,11 +13,11 @@ return [
     |
     */
 
-    'hello'   => 'Hello',
+    'hello' => 'Hello',
     'reset_password' => 'To reset your password, complete this form',
     'thank_you' => 'Thank you',
-    'team_tickety' => 'Team Tickety',
-    'tickety_email' => 'Tickety.com Email',
+    'team_tickety' => 'Attendize',
+    'tickety_email' => 'Attendize',
     'powered_by' => 'Powered By',
     'tickety_url' => 'Tickety.com',
     'hi' => 'Hi',
@@ -30,5 +30,30 @@ return [
     'confirm' => 'You can create you first event and confirm your email using the link below',
     'questions' => 'If you have any questions, feedback or suggestions feel free to reply to this email',
 
+    'ordersucccess' => 'Your order for the event <b>:eventtitle</b> was successful.',
+    'requires_payment' => 'Please note: This order still requires payment. Instructions on how to make payment can be found on your order page:',
 
+    'orderdetails' => [
+        'title' => 'Order Details',
+        'reference' => 'Order Reference',
+        'name' => 'Order Name',
+        'date' => 'Order Date',
+        'email' => 'Order Email',
+        'calendar' => 'Add To Calendar'
+    ],
+    'orderitems' => [
+        'title' => 'Order Details',
+        'ticket'=>'Ticket',
+        'qty'=>'Qty.',
+        'price'=>'Price',
+        'fee'=>'Fee',
+        'total'=>'Total',
+        'subtotal'=>'Sub Total'
+    ],
+
+    'subjects' => [
+        'attendee'=> 'Your ticket for the event ',
+         'attendeeInvite'=> 'Your ticket for the event ',
+        'orderTickets'=> 'Your tickets for the event '
+    ]
 ];

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Jenssegers\Date\Date;
 use Str;
 use URL;
 
@@ -332,7 +333,18 @@ class Event extends MyBaseModel
         return ['created_at', 'updated_at', 'start_date', 'end_date'];
     }
 
-    public function getIcsForEvent()
+    public function getStartDateAttribute($date)
+    {
+        return new Date($date);
+    }
+
+    public function getEndDateAttribute($date)
+    {
+        return new Date($date);
+    }
+
+
+        public function getIcsForEvent()
     {
         $siteUrl = URL::to('/');
         $eventUrl = $this->getEventUrlAttribute();

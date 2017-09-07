@@ -2,14 +2,14 @@
 
 @section('message_content')
 
-    <p>Hi there,</p>
+    <p>{{ trans('emails.hi_there') }},</p>
     <p>
-        You have received a refund on behalf of your cancelled ticket for <b>{{{$attendee->event->title}}}</b>.
-        <b>{{{ $refund_amount }}} has been refunded to the original payee, you should see the payment in a few days.</b>
+        {{ trans('emails.received_refund') }} <b>{{{$attendee->event->title}}}</b>.
+        <b>{{{ $refund_amount }}} {{ trans('emails.is_refunded') }}.</b>
     </p>
 
     <p>
-        You can contact <b>{{{ $attendee->event->organiser->name }}}</b> directly at <a href='mailto:{{{$attendee->event->organiser->email}}}'>{{{$attendee->event->organiser->email}}}</a> or by replying to this email should you require any more information.
+        {{ trans('emails.you_can_contact') }} <b>{{{ $attendee->event->organiser->name }}}</b> {{ trans('emails.directly_at') }} <a href='mailto:{{{$attendee->event->organiser->email}}}'>{{{$attendee->event->organiser->email}}}</a> {{ trans('emails.reply_mail_info') }}.
     </p>
 @stop
 

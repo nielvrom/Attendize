@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>
-      Attendize QRCode Check In: {{ $event->title }}
+      Tickety QRCode Check In: {{ $event->title }}
   </title>
 
     {!! HTML::style('assets/stylesheet/application.css') !!}

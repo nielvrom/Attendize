@@ -1,41 +1,41 @@
 @extends('Emails.Layouts.Master')
 
 @section('message_content')
-Hello,<br><br>
+{{trans('emails.hello')}},<br><br>
 
-Your order for the event <b>{{$order->event->title}}</b> was successful.<br><br>
+{!! trans('emails.ordersucccess', ['eventtitle'=> $order->event->title ]) !!}<br><br>
 
-Your tickets are attached to this email. You can also view you order details and download your tickets at: {{route('showOrderDetails', ['order_reference' => $order->order_reference])}}
+{{trans('emails.attachment')}} {{trans('emails.view_order_info')}}: {{route('showOrderDetails', ['order_reference' => $order->order_reference])}}
 
 @if(!$order->is_payment_received)
 <br><br>
-<b>Please note: This order still requires payment. Instructions on how to make payment can be found on your order page: {{route('showOrderDetails', ['order_reference' => $order->order_reference])}}</b>
+<b>{{trans('emails.requires_payment')}} {{route('showOrderDetails', ['order_reference' => $order->order_reference])}}</b>
 <br><br>
 @endif
-<h3>Order Details</h3>
-Order Reference: <b>{{$order->order_reference}}</b><br>
-Order Name: <b>{{$order->full_name}}</b><br>
-Order Date: <b>{{$order->created_at->toDayDateTimeString()}}</b><br>
-Order Email: <b>{{$order->email}}</b><br>
+<h3>{{trans('emails.orderdetails.title')}}</h3>
+{{trans('emails.orderdetails.reference')}}: <b>{{$order->order_reference}}</b><br>
+{{trans('emails.orderdetails.name')}}: <b>{{$order->full_name}}</b><br>
+{{trans('emails.orderdetails.date')}}: <b>{{$order->created_at->toDayDateTimeString()}}</b><br>
+{{trans('emails.orderdetails.email')}}: <b>{{$order->email}}</b><br>
 <a href="{!! route('downloadCalendarIcs', ['event_id' => $order->event->id]) !!}">Add To Calendar</a>
-<h3>Order Items</h3>
+<h3>{{trans('emails.orderitems.title')}}</h3>
 <div style="padding:10px; background: #F9F9F9; border: 1px solid #f1f1f1;">
     <table style="width:100%; margin:10px;">
         <tr>
             <td>
-                <b>Ticket</b>
+                <b>{{trans('emails.orderitems.ticket')}}</b>
             </td>
             <td>
-                <b>Qty.</b>
+                <b>{{trans('emails.orderitems.qty')}}</b>
             </td>
             <td>
-                <b>Price</b>
+                <b>{{trans('emails.orderitems.price')}}</b>
             </td>
             <td>
-                <b>Fee</b>
+                <b>{{trans('emails.orderitems.fee')}}</b>
             </td>
             <td>
-                <b>Total</b>
+                <b>{{trans('emails.orderitems.total')}}</b>
             </td>
         </tr>
         @foreach($order->orderItems as $order_item)
@@ -80,7 +80,7 @@ Order Email: <b>{{$order->email}}</b><br>
             <td>
             </td>
             <td>
-                <b>Sub Total</b>
+                <b>{{trans('emails.orderitems.subtotal')}}</b>
             </td>
             <td colspan="2">
                {{money($order->amount + $order->order_fee, $order->event->currency)}}
@@ -91,5 +91,5 @@ Order Email: <b>{{$order->email}}</b><br>
     <br><br>
 </div>
 <br><br>
-Thank you
+{{trans('emails.thank_you')}}
 @stop

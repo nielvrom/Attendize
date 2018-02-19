@@ -36,31 +36,31 @@
                     {!! Form::open(array('url' => route('postContactOrganiser', array('event_id' => $event->id)), 'class' => 'reset ajax')) !!}
                     <h3>Contact <i>{{$event->organiser->name}}</i></h3>
                     <div class="form-group">
-                        {!! Form::label('Your Name') !!}
+                        {!! Form::label(trans('event.organiser.form.name')) !!}
                         {!! Form::text('name', null,
                             array('required',
                                   'class'=>'form-control',
-                                  'placeholder'=>'Your name')) !!}
+                                  'placeholder'=>trans('event.organiser.form.name'))) !!}
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('Your E-mail Address') !!}
+                        {!! Form::label(trans('event.organiser.form.email')) !!}
                         {!! Form::text('email', null,
                             array('required',
                                   'class'=>'form-control',
-                                  'placeholder'=>'Your e-mail address')) !!}
+                                  'placeholder'=>trans('event.organiser.form.email'))) !!}
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('Your Message') !!}
+                        {!! Form::label(trans('event.organiser.form.message')) !!}
                         {!! Form::textarea('message', null,
                             array('required',
                                   'class'=>'form-control',
-                                  'placeholder'=>'Your message')) !!}
+                                  'placeholder'=>trans('event.organiser.form.message'))) !!}
                     </div>
 
                     <div class="form-group">
-                        {!! Form::submit('Send Message',
+                        {!! Form::submit(trans('event.organiser.form.send'),
                           array('class'=>'btn btn-primary')) !!}
                     </div>
                 </div>

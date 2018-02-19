@@ -99,14 +99,15 @@
                                                 @if($event->enable_offline_payments)
 
                                                     <div class="help-block" style="font-size: 11px;">
-                                                        Offline Payment Methods Available
+
+                                                        {{trans('event.tickets.offline')}}
                                                     </div>
                                                 @endif
 
                                             </div>
 
                                         @endif
-                                        {!!Form::submit('Register', ['class' => 'btn btn-lg btn-primary pull-right'])!!}
+                                        {!!Form::submit(trans('event.tickets.register'), ['class' => 'btn btn-lg btn-primary pull-right'])!!}
                                     </td>
                                 </tr>
                             </table>

@@ -1,7 +1,7 @@
 <section id="share" class="container">
     <div class="row">
         <h1 class="section_head">
-            Share Event
+            {{trans('event.share.title')}}
         </h1>
     </div>
     <div class="row">

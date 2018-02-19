@@ -1,7 +1,7 @@
 @extends('Shared.Layouts.MasterWithoutMenus')
 
 @section('title')
-    Attendize Web Installer
+    {{ trans('installer.web_installer') }}
 @stop
 
 @section('head')
@@ -28,61 +28,61 @@
                         {!!HTML::image('assets/images/logo-dark.png')!!}
                     </div>
 
-                    <h1>Attendize Setup</h1>
+                    <h1>{{ trans('installer.setup') }}</h1>
 
 
-                    <h3>PHP Version Check</h3>
+                    <h3>{{ trans('installer.php_version_check') }}</h3>
                     @if (version_compare(phpversion(), '5.5.9', '<'))
                         <div class="alert alert-warning">
-                            Warning: The application requires PHP >= <b>5.5.9.</b> Your version is <b>{{phpversion()}}</b>
+                            {{ trans('installer.warning_php') }} <b>5.5.9.</b> {{ trans('installer.your_version') }} <b>{{phpversion()}}</b>
                         </div>
                     @else
                         <div class="alert alert-success">
-                            Success: The application requires PHP >= <b>5.5.9.</b> and yours is <b>{{phpversion()}}</b>
+                            {{ trans('installer.success_php') }} <b>5.5.9.</b> {{ trans('installer.yours_php') }} <b>{{phpversion()}}</b>
                         </div>
                     @endif
 
-                    <h3>Files &amp; Folders Check</h3>
+                    <h3>{{ trans('installer.files_folders_check') }}</h3>
                     @foreach($paths as $path)
 
                         @if(!File::isWritable($path))
                             <div class="alert alert-danger">
-                                Warning: <b>{{$path}}</b> is not writable
+                                {{ trans('installer.warning') }}: <b>{{$path}}</b> {{ trans('installer.not_writable') }}
                             </div>
                         @else
                             <div class="alert alert-success">
-                                Success: <b>{{$path}}</b> is writable
+                                {{ trans('installer.success') }}: <b>{{$path}}</b> {{ trans('installer.is_writable') }}
                             </div>
                         @endif
 
                     @endforeach
 
-                    <h3>PHP Requirements Check</h3>
+                    <h3>{{ trans('installer.php_requirements_check') }}</h3>
                     @foreach($requirements as $requirement)
 
                         @if(!extension_loaded($requirement))
                             <div class="alert alert-danger">
-                                Error: <b>{{$requirement}}</b> extension is not loaded
+                                {{ trans('installer.error') }}: <b>{{$requirement}}</b> {{ trans('installer.extension_not_loaded') }}
                             </div>
                         @else
                             <div class="alert alert-success">
-                                Success: <b>{{$requirement}}</b> extension is loaded
+                                {{ trans('installer.success') }}: <b>{{$requirement}}</b> {{ trans('installer.extension_is_loaded') }}
                             </div>
                         @endif
 
                     @endforeach
 
-                    <h3>PHP Optional Requirements Check</h3>
+                    <h3>{{ trans('installer.php_optional_requirements_check') }}</h3>
 
                     @foreach($optional_requirements as $optional_requirement)
 
                         @if(!extension_loaded($optional_requirement))
                             <div class="alert alert-warning">
-                                Warning: <b>{{$optional_requirement}}</b> extension is not loaded
+                                {{ trans('installer.warning') }}: <b>{{$optional_requirement}}</b> {{ trans('installer.extension_not_loaded') }}
                             </div>
                         @else
                             <div class="alert alert-success">
-                                Success: <b>{{$optional_requirement}}</b> extension is loaded
+                                {{ trans('installer.success') }}: <b>{{$optional_requirement}}</b> {{ trans('installer.extension_is_loaded') }}
                             </div>
                         @endif
 
@@ -90,7 +90,7 @@
 
                     {!! Form::open(array('url' => route('postInstaller'), 'class' => 'installer_form')) !!}
 
-                    <h3>App Settings</h3>
+                    <h3>{{ trans('installer.app_settings') }}</h3>
 
                     <div class="form-group">
                         {!! Form::label('app_url', 'Application URL', array('class'=>'required control-label ')) !!}
@@ -101,7 +101,7 @@
                                     ))  !!}
                     </div>
 
-                    <h3>Database Settings</h3>
+                    <h3>{{ trans('installer.database_settings') }}</h3>
 
                     <div class="form-group">
                         {!! Form::label('database_type', 'Database Type', array('class'=>'required control-label ')) !!}
@@ -178,11 +178,11 @@
                             });
                         </script>
                         <a href="{{route('postInstaller',['test' => 'db'])}}" class="test_db">
-                            Test Database Connection
+                            {{ trans('installer.test_database_section') }}
                         </a>
                     </div>
 
-                    <h3>Email Settings</h3>
+                    <h3>{{ trans('installer.email_settings') }}</h3>
 
                     <div class="form-group">
                         {!! Form::label('mail_from_address', 'Mail From Address', array('class'=>' control-label required')) !!}
@@ -206,8 +206,8 @@
                                     'placeholder' => 'mail'
                                     ))  !!}
                         <div class="help-block">
-                            To use PHP's <a target="_blank" href="http://php.net/manual/en/function.mail.php">mail</a>
-                            feature enter <b>mail</b> in this box and leave the below fields empty.
+                            {{ trans('installer.to_use_phps') }} <a target="_blank" href="http://php.net/manual/en/function.mail.php">{{ trans('installer.mail') }}</a>
+                            {{ trans('installer.feature_enter') }}.
                         </div>
                     </div>
 
@@ -249,19 +249,19 @@
 
                     <div class="well">
                         <p>
-                            Installation may make take several minutes to complete. Once you click '<b>Install Attendize</b>' the config settings will be written to this file: <b>{{base_path('.env')}}</b>. You can manually change these settings in the future by editing this file.
+                            {{ trans('installer.installation') }}: <b>{{base_path('.env')}}</b>. {{ trans('installer.manually_change') }}.
                         </p>
                         <p>
-                            If the install fails be sure to check the log file in <b>{{storage_path('logs')}}</b>. If there are no errors in the log files also <b>check other log files on your server</b>.
+                            {{ trans('installer.log_file') }} <b>{{storage_path('logs')}}</b>. {{ trans('installer.no_errors_in_log_file') }}.
                         </p>
                         <p>
-                            If you are using shared hosting please ask your host if they support the Attendize requirements before requesting support.
+                            {{ trans('installer.shared_hosting') }}
                         </p>
                         <p>
-                            If you still need help you can ask a question in the <a href="https://attendize.com/forum/">support forum</a>. Please include as much detail as possible, including any errors in the log file.
+                            {{ trans('installer.still_need_help') }}
                         </p>
                         <p>
-                            Please also  <a style="text-decoration: underline;" target="_blank" href="https://attendize.com/licence.php?from_installer">read the licence</a> before installing Attendize.
+                            {{ trans('installer.please_also') }}  <a style="text-decoration: underline;" target="_blank" href="https://attendize.com/licence.php?from_installer">{{ trans('installer.read_license') }}.
                         </p>
                     </div>
 

@@ -12,7 +12,7 @@
     -->
     <title>
         @section('title')
-            Attendize ::
+            Tickety ::
         @show
     </title>
 
@@ -84,7 +84,7 @@
 
 
                     <li class="divider"></li>
-                    <li><a target="_blank" href="https://www.attendize.com/feedback.php?v={{ config('attendize.version') }}"><span class="icon ico-megaphone"></span>Feedback / Bug Report</a></li>
+                    <li><a target="_blank" href="https://www.tickety.com/contact.php?v={{ config('attendize.version') }}"><span class="icon ico-megaphone"></span>Feedback / Bug Report</a></li>
                     <li class="divider"></li>
                     <li><a href="{{route('logout')}}"><span class="icon ico-exit"></span>Sign Out</a></li>
                 </ul>

@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>
-        We'll be back soon
+        {{ trans('errors.back_soon') }}
     </title>
     <style>
         body {
@@ -21,8 +21,8 @@
 </head>
 <body>
 <div class="missing">
-    <h2>We'll be back soon</h2>
-    We're currently making improvements to our website.
+    <h2>{{ trans('errors.back_soon') }}</h2>
+    {{ trans('errors.improvements_website') }}.
 </div>
 </body>
 </html>

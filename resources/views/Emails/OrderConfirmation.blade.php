@@ -1,37 +1,37 @@
 @extends('Emails.Layouts.Master')
 
 @section('message_content')
-Hello,<br><br>
+{{ trans('emails.hello') }},<br><br>
 
-Your order for the event <b>{{$order->event->title}}</b> was successful.<br><br>
+{{ trans('emails.order_for_event') }} <b>{{$order->event->title}}</b> {{ trans('emails.was_successful') }}.<br><br>
 
-Your tickets are attached to this email. You can also view you order details and download your tickets at: {{route('showOrderDetails', ['order_reference' => $order->order_reference])}}
+{{ trans('emails.tickets_attached') }}: {{route('showOrderDetails', ['order_reference' => $order->order_reference])}}
 
 
-<h3>Order Details</h3>
-Order Reference: <b>{{$order->order_reference}}</b><br>
-Order Name: <b>{{$order->full_name}}</b><br>
-Order Date: <b>{{$order->created_at->toDayDateTimeString()}}</b><br>
-Order Email: <b>{{$order->email}}</b><br>
+<h3>{{ trans('emails.order_details') }}</h3>
+{{ trans('emails.order_reference') }}: <b>{{$order->order_reference}}</b><br>
+{{ trans('emails.order_name') }}: <b>{{$order->full_name}}</b><br>
+{{ trans('emails.order_date') }}: <b>{{$order->created_at->toDayDateTimeString()}}</b><br>
+{{ trans('emails.order_email') }}: <b>{{$order->email}}</b><br>
 
-<h3>Order Items</h3>
+<h3>{{ trans('emails.order_items') }}</h3>
 <div style="padding:10px; background: #F9F9F9; border: 1px solid #f1f1f1;">
     <table style="width:100%; margin:10px;">
         <tr>
             <td>
-                <b>Ticket</b>
+                <b>{{ trans('emails.ticket') }}</b>
             </td>
             <td>
-                <b>Qty.</b>
+                <b>{{ trans('emails.quantity') }}</b>
             </td>
             <td>
-                <b>Price</b>
+                <b>{{ trans('emails.price') }}</b>
             </td>
             <td>
-                <b>Fee</b>
+                <b>{{ trans('emails.fee') }}</b>
             </td>
             <td>
-                <b>Total</b>
+                <b>{{ trans('emails.total') }}</b>
             </td>
         </tr>
         @foreach($order->orderItems as $order_item)
@@ -44,7 +44,7 @@ Order Email: <b>{{$order->email}}</b><br>
                                     </td>
                                     <td>
                                         @if((int)ceil($order_item->unit_price) == 0)
-                                        FREE
+                                            {{ trans('emails.free') }}
                                         @else
                                        {{money($order_item->unit_price, $order->event->currency)}}
                                         @endif
@@ -60,7 +60,7 @@ Order Email: <b>{{$order->email}}</b><br>
                                     </td>
                                     <td>
                                         @if((int)ceil($order_item->unit_price) == 0)
-                                        FREE
+                                            {{ trans('emails.free') }}
                                         @else
                                         {{money(($order_item->unit_price + $order_item->unit_booking_fee) * ($order_item->quantity), $order->event->currency)}}
                                         @endif
@@ -76,7 +76,7 @@ Order Email: <b>{{$order->email}}</b><br>
             <td>
             </td>
             <td>
-                <b>Sub Total</b>
+                <b>{{ trans('emails.sub_total') }}</b>
             </td>
             <td colspan="2">
                {{money($order->amount + $order->order_fee, $order->event->currency)}}
@@ -87,5 +87,5 @@ Order Email: <b>{{$order->email}}</b><br>
     <br><br>
 </div>
 <br><br>
-Thank you
+{{ trans('emails.thank_you') }}
 @stop

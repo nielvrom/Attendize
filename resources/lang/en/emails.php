@@ -29,7 +29,6 @@ return [
     'thrilled' => 'We\'re thrilled to have you on board',
     'confirm' => 'You can create you first event and confirm your email using the link below',
     'questions' => 'If you have any questions, feedback or suggestions feel free to reply to this email',
-
     'ordersucccess' => 'Your order for the event <b>:eventtitle</b> was successful.',
     'requires_payment' => 'Please note: This order still requires payment. Instructions on how to make payment can be found on your order page:',
 

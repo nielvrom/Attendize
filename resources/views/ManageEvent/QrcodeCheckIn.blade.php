@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>
-      Attendize QRCode Check In: {{ $event->title }}
+      Tickety QRCode Check In: {{ $event->title }}
   </title>
 
     {!! HTML::style('assets/stylesheet/application.css') !!}
@@ -84,7 +84,7 @@
     <footer id="footer">
       <br>
       <br>
-      <h5 align="center" style="color: #6D717A;">Powered By <a href="https://www.attendize.com/">Attendize</a> </h5>
+      <h5 align="center" style="color: #6D717A;">Powered By <a href="https://www.tickety.com/">Tickety</a> </h5>
     </footer>
   </div>
 
